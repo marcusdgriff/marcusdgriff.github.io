@@ -1,7 +1,7 @@
 
 
 <!--
-Copyright (c) 2018 by Marcus Griffiths (https://codepen.io/mdgriff/pen/ePQadJ)
+Copyright (c) 2018 by Marcus Griffiths
 
 
 Fork of an original work by Nodws (https://codepen.io/nodws/pen/EmvwrZ)
