@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Resources - Marcus Griffiths, PhD</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Marcus Griffiths, PhD.</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">About me</a></li>
+							<li><a href="publications.html">Publications</a></li>
+							<li><a href="presentations.html">Presentations / Conferences</a></li>
+							<li><a href="code.html">Code</a></li>
+							<li><a href="software.html">Software</a></li>
+							<li><a href="resources.html">Training / Resources</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+				<div id="main">
+					<div class="inner">
+						<h1>How to use a PlantID system to organize experiments with barcodes</h1>
+
+						<h2></h2>
+
+            <p><img class="image right" src="images/plantid.jpg" alt="RooTrak" ></a>
+            	<p>To help minimize sample and treatment mix ups during experiments it is good practice to print out plant labels in advance. For large scale experiments doing so is also a time-saver. Here I use a Barcode printer software (BarTender, paid but there are many alternatives available) to design and print to a Zebra barcode printer. The software uses a .CSV (table) which I provide containing information of all samples to populate the print outs.
+            	</p>
+
+				<p>
+				Here the label has a human readable part as well as a QR code. Not having the human readable part is possible for automated analysis setups and that is a benefit in reducing unintended human biases during experiments. Multiple labels can be printed out for each plant or the label can be peeled off and go with the plant. 
+				</p>
+
+				<p>
+				I make the barcodes using excel. Convey all information necessary about the experiment and plants with unqiue PlantIDs (eg. Replicate number combination with genotype and treatment in my experiments make each ID unique). Then use the Concatenate function to merge the information into a single tag.
+				</p>
+				<p>
+				=CONCATENATE(A2,"_",B2,"_",C2,"_p",D2,"_t",E2,"_r",F2)
+				</p>
+				<img class="img-fluid" src="images/plantid-concatenate.png" alt="RooTrak" ></a>
+				<p>
+				eg. 020919_NAM6_HP301_p18_t100_r5   (PlantID)
+				</p>
+				<p>
+				Come up with your own tag and keep it consistent between experiments so your  pipeline is easier and consistent. The PlantID is used to create a QR box. During data collection a QR scanner can be used to easily assign data to the correct plant. I use underscores to separate out the tag as this is easy to work with in R scripts. Note some data analysis softwares have text character limits so a unique number (eg. Sample 10001 is also a valid practice – if you do this ensure you do not lose the metadata for what is what!
+				</p>
+				<p>
+				After data collection I process it all using R. Example code below for loading in the PlantIDs
+				</p>
+				<p>
+				library(tidyverse) #ggplot2, purrr, tibble, dplyr, tidyr, stringr, readr, forcats <br>
+				dat <- read_csv(file=paste("FILENAME.csv"), na = c("NA", "na", "n.a.", ""))<br>
+				</p>
+				<p>
+				#if you have multiple dataframes for the same plants combine them together by the PlantID<br>
+				Plantdata <- Rootweightdata %>% <br>
+				  full_join(Rootrespirationdata, by = "PlantID") %>% <br>
+				  full_join(Rootlengthdata, by = "PlantID") %>% <br>
+				  full_join(Shootweightdata, by = "PlantID") %>% <br>
+				  full_join(Shootimagedata, by = "PlantID") %>% <br>
+				  full_join(ShootNcontentdata, by = "PlantID") <br>
+				</p>
+<p>
+				#Seperate out the tag command. From here you can group and separate by genotype & treatment, make figures etc. <br>
+
+				Plantdata <- separate(Plantdata, PlantID, <br>
+				                      into = c("Date", "Experiment", "Geno", "Plant", "Treatment", "Rep"), <br>
+				                      sep = '_') <br>
+				Plantdata <- separate(Plantdata, `Plant`, <br>
+				                      into = c("Plant1","Plant"), <br>
+				                      sep = 'p') <br>
+				Plantdata <- separate(Plantdata, `Treatment`, <br>
+				                      into = c("Treatment1","Treatment"), <br>
+				                      sep = 't') <br>
+				Plantdata <- separate(Plantdata, `Rep`, <br>
+				                      into = c("Rep1","Rep"), <br>
+				                      sep = 'r') <br>
+
+				name <- c("Plant1", "Treatment1", "Rep1") <br>
+				Plantdata <- Plantdata %>% select(-one_of(name)) <br>
+				rm(name) <br>
+</p>
+				<p>
+					If you find it useful or have suggestions of improivement to this systme please get in touch!
+				</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </p>
+
+
+
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://twitter.com/marcusdgriff" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://scholar.google.co.uk/citations?hl=en&user=X--dqYYAAAAJ" class="icon brands style2 fa-google"><span class="label">Google scholar</span></a></li>
+									<li><a href="https://linkedin.com/in/mdgriffiths" class="icon brands style2 fa-linkedin"><span class="label">Linkedin</span></a></li>
+									<li><a href="https://publons.com/researcher/1627133/marcus-griffiths/" class="icon brands style2 fa-product-hunt"><span class="label">Publons</span></a></li>
+									<li><a href="https://github.com/marcusdgriff/" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://orcid.org/0000-0003-2349-8967" class="icon brands style2 fa-orcid"><span class="label">OrcidID</span></a></li>
+									<li><a href="mailto:mdgriffths@noble.org" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Marcus Griffiths. All rights reserved</li><li>
+								designed using Bootstrap 4.0</li><li>
+								hosted on <i class="fab fa-github"></i> </li><li>
+								Source code available <a href="https://github.com/marcusdgriff/marcusdgriff.github.io" target="_blank">here</a></li><li>
+								and maintained by myself </li><li>
+								Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
