@@ -82,55 +82,11 @@
 				After data collection I process it all using R. Example code below for loading in the PlantIDs
 				</p>
 				<p>
-				library(tidyverse) #ggplot2, purrr, tibble, dplyr, tidyr, stringr, readr, forcats <br>
-				dat <- read_csv(file=paste("FILENAME.csv"), na = c("NA", "na", "n.a.", ""))<br>
+					<script src="https://gist.github.com/marcusdgriff/1768b1cc20be2757ae101c52810568aa.js"></script>
 				</p>
-				<p>
-				#if you have multiple dataframes for the same plants combine them together by the PlantID<br>
-				Plantdata <- Rootweightdata %>% <br>
-				  full_join(Rootrespirationdata, by = "PlantID") %>% <br>
-				  full_join(Rootlengthdata, by = "PlantID") %>% <br>
-				  full_join(Shootweightdata, by = "PlantID") %>% <br>
-				  full_join(Shootimagedata, by = "PlantID") %>% <br>
-				  full_join(ShootNcontentdata, by = "PlantID") <br>
-				</p>
-<p>
-				#Seperate out the tag command. From here you can group and separate by genotype & treatment, make figures etc. <br>
-
-				Plantdata <- separate(Plantdata, PlantID, <br>
-				                      into = c("Date", "Experiment", "Geno", "Plant", "Treatment", "Rep"), <br>
-				                      sep = '_') <br>
-				Plantdata <- separate(Plantdata, `Plant`, <br>
-				                      into = c("Plant1","Plant"), <br>
-				                      sep = 'p') <br>
-				Plantdata <- separate(Plantdata, `Treatment`, <br>
-				                      into = c("Treatment1","Treatment"), <br>
-				                      sep = 't') <br>
-				Plantdata <- separate(Plantdata, `Rep`, <br>
-				                      into = c("Rep1","Rep"), <br>
-				                      sep = 'r') <br>
-
-				name <- c("Plant1", "Treatment1", "Rep1") <br>
-				Plantdata <- Plantdata %>% select(-one_of(name)) <br>
-				rm(name) <br>
-</p>
 				<p>
 					If you find it useful or have suggestions of improivement to this systme please get in touch!
 				</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             </p>
