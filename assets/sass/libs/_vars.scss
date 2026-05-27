@@ -11,40 +11,41 @@
 
 // Size.
 	$size: (
-		border-radius:		4px,
+		border-radius:		8px,
 		border-width:		1px,
 		element-height:		3em,
 		element-margin:		2em,
 		gutter:				2.5em,
 		field-gutter:		2em,
-		inner:				68em,
+		inner:				72em,
 		menu:				22em
 	);
 
 // Font.
 	$font: (
-		family:				('Source Sans Pro', Helvetica, sans-serif),
+		family:				(-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif),
 		family-fixed:		('Courier New', monospace),
-		weight:				300,
-		weight-bold:		900,
-		weight-bold-alt:	700,
-		letter-spacing:		0.35em,
-		letter-spacing-alt:	-0.035em
+		weight:				400,
+		weight-bold:		800,
+		weight-bold-alt:	800,
+		letter-spacing:		0.08em,
+		letter-spacing-alt:	0
 	);
 
 // Palette.
 	$palette: (
 		bg:					#ffffff,
-		bg-accent:			#333333,
-		bg-alt:				#f6f6f6,
-		fg:					#585858,
+		bg-accent:			#173f38,
+		bg-alt:				#f4f8f5,
+		fg:					#33423d,
+		fg-bold:			#172622,
 		fg-accent:			#ffffff,
-		border:				#c9c9c9,
+		border:				#d6ded9,
 		border-bg:			rgba(144,144,144,0.075),
-		accent1:			#f2849e,
-		accent2:			#7ecaf6,
-		accent3:			#7bd0c1,
-		accent4:			#c75b9b,
-		accent5:			#ae85ca,
-		accent6:			#8499e7,
+		accent1:			#1f7a68,
+		accent2:			#357fa8,
+		accent3:			#d59b2d,
+		accent4:			#cf3f75,
+		accent5:			#7d6bb0,
+		accent6:			#4d8f75,
 	);

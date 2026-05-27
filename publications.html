@@ -9,7 +9,7 @@
 	<title>Publications - Marcus Griffiths, PhD</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<link href="assets/css/main.css" rel="stylesheet">
+	<link href="assets/css/main.css?v=20260527-6" rel="stylesheet">
 	<noscript>
 		<link href="assets/css/noscript.css" rel="stylesheet">
 	</noscript>
@@ -435,22 +435,40 @@
 
 					</section>
 
-					<section>
-
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<div class="card card-block">
-								<h5><i class="fas fa-pen-fancy"></i>Citations</h5><iframe frameborder="0" height="350" scrolling="no" seamless="seamless" src="https://plot.ly/~mdgriffiths/1.embed" width="95%"></iframe><br>
-								Source: Google Scholar
+						<section class="metrics-panel" aria-labelledby="citation-metrics">
+							<div class="metrics-card">
+								<div class="metrics-copy">
+									<p class="eyebrow">Research profiles</p>
+									<h2 id="citation-metrics">Citations and author records</h2>
+									<p>Citation counts and author records update over time. The live profiles below are the most reliable places to view current citation metrics, identifiers, and publication metadata.</p>
+								</div>
+								<ul class="actions profile-actions">
+									<li><a class="button primary" href="https://scholar.google.co.uk/citations?hl=en&user=X--dqYYAAAAJ">Google Scholar</a></li>
+									<li><a class="button" href="https://orcid.org/0000-0003-2349-8967">ORCID</a></li>
+									<li><a class="button" href="https://github.com/marcusdgriff/">GitHub</a></li>
+								</ul>
 							</div>
-						</div>
+							<div class="publication-output graph-switcher" data-default-graph="cumulative-citations">
+								<div class="graph-header">
+									<h3 id="active-graph-title">Cumulative citation count per year</h3>
+									<div class="graph-controls" aria-label="Choose graph">
+										<button class="active" type="button" data-graph="cumulative-citations">Cumulative citations</button>
+										<button type="button" data-graph="yearly-citations">Citations by year</button>
+										<button type="button" data-graph="publication-output">Publication output</button>
+									</div>
+								</div>
+								<div class="graph-canvas" aria-live="polite">
+									<svg role="img" aria-labelledby="active-graph-title graph-description" viewBox="0 0 640 320"></svg>
+								</div>
+								<p id="graph-description" class="graph-note">Citation data from public Google Scholar profile, accessed May 27, 2026.</p>
+							</div>
+						</section>
+
 					</div>
+				</div>
 
-				</section>
-
-			</div>
-
-			<!-- Footer -->
-			<footer id="footer">
+				<!-- Footer -->
+				<footer id="footer">
 				<div class="inner">
 					<section>
 						<h2>Get in touch</h2>
@@ -514,6 +532,7 @@
 		<script src="assets/js/breakpoints.min.js"></script> 
 		<script src="assets/js/util.js"></script> 
 		<script src="assets/js/main.js"></script>
+		<script src="assets/js/publications.js?v=20260527-1"></script>
 	</body>
 		<script src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js' type='text/javascript'></script>
 	</html>
